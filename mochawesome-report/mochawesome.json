@@ -1,0 +1,214 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-12-18T15:53:56.033Z",
+    "end": "2019-12-18T15:53:58.984Z",
+    "duration": 2951,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f6195779-d69e-4d48-a235-c1b1814707a4",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ec8004f5-a309-4dc0-96d5-098d3add9bc2",
+          "title": "Direct Debit Details Service",
+          "fullFile": "/Users/vishal.agarwalnationwide.co.uk/workspace/api-testing/test/direct-debit-details_test.js",
+          "file": "/test/direct-debit-details_test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return a 200 response, valid sortcode and account number",
+              "fullTitle": "Direct Debit Details Service should return a 200 response, valid sortcode and account number",
+              "timedOut": false,
+              "duration": 812,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_DDDETAILS\",\n        \"payload\": {\n            \"nameOnAccount\": \"vishal agarwal\",\n            \"accountNumber\": \"00019987\",\n            \"preferredPaymentDay\": \"1st\",\n            \"sortCode\": \"070246\"\n        },\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        console.log(\"Error\", err);\n        console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        \n        expect(res.body.payload).to.have.property(\"validateDirectDebitDetailsResult\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecision\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecision).to.equal(\"PASS\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecisionMessage\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecisionMessage).to.equal(\"You have setup your Direct Debit.\");\n        \n        done();\n    });",
+              "err": {},
+              "uuid": "33cd99cd-40b9-4097-99bf-d72d6968f48b",
+              "parentUUID": "ec8004f5-a309-4dc0-96d5-098d3add9bc2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return a 200 response, invalid sortcode and account number",
+              "fullTitle": "Direct Debit Details Service should return a 200 response, invalid sortcode and account number",
+              "timedOut": false,
+              "duration": 452,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_DDDETAILS\",\n        \"payload\": {\n            \"nameOnAccount\": \"vishal agarwal\",\n            \"accountNumber\": \"00019987\",\n            \"preferredPaymentDay\": \"1st\",\n            \"sortCode\": \"070234\"\n        },\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        // console.log(\"Error\", err);\n        // console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        \n        expect(res.body.payload).to.have.property(\"validateDirectDebitDetailsResult\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecision\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecision).to.equal(\"SORT_CODE_FAIL\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecisionMessage\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecisionMessage).to.equal(\"Sorry, the sort code provided cannot be found. Please enter a valid sort code.\");\n        \n        done();\n    });",
+              "err": {},
+              "uuid": "290a8de4-ceba-406f-ac49-9e06aafcef23",
+              "parentUUID": "ec8004f5-a309-4dc0-96d5-098d3add9bc2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return a 200 response, valid sortcode and invalid account number",
+              "fullTitle": "Direct Debit Details Service should return a 200 response, valid sortcode and invalid account number",
+              "timedOut": false,
+              "duration": 528,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_DDDETAILS\",\n        \"payload\": {\n            \"nameOnAccount\": \"vishal agarwal\",\n            \"accountNumber\": \"01234567\",\n            \"preferredPaymentDay\": \"2nd\",\n            \"sortCode\": \"070246\"\n        },\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        // console.log(\"Error\", err);\n        // console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        \n        expect(res.body.payload).to.have.property(\"validateDirectDebitDetailsResult\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecision\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecision).to.equal(\"ACCOUNT_NUMBER_FAIL\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecisionMessage\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecisionMessage).to.equal(\"Sorry, the account number provided is not valid. Please enter a valid account number.\");\n        \n        done();\n    });",
+              "err": {},
+              "uuid": "358972fa-be66-4823-877d-bea364c5d1ff",
+              "parentUUID": "ec8004f5-a309-4dc0-96d5-098d3add9bc2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return a 200 response, invalid sortcode and invalid account number",
+              "fullTitle": "Direct Debit Details Service should return a 200 response, invalid sortcode and invalid account number",
+              "timedOut": false,
+              "duration": 494,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_DDDETAILS\",\n        \"payload\": {\n            \"nameOnAccount\": \"vishal agarwal\",\n            \"accountNumber\": \"87654321\",\n            \"preferredPaymentDay\": \"23rd\",\n            \"sortCode\": \"070212\"\n        },\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        // console.log(\"Error\", err);\n        // console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        \n        expect(res.body.payload).to.have.property(\"validateDirectDebitDetailsResult\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecision\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecision).to.equal(\"SORT_CODE_FAIL\");\n        expect(res.body.payload.validateDirectDebitDetailsResult).to.have.property(\"sortCodeAndAccountNumberCheckDecisionMessage\");\n        expect(res.body.payload.validateDirectDebitDetailsResult.sortCodeAndAccountNumberCheckDecisionMessage).to.equal(\"Sorry, the sort code provided cannot be found. Please enter a valid sort code.\");\n        \n        done();\n    });",
+              "err": {},
+              "uuid": "4c5f920f-1e25-47a4-981e-7bcab23ea41e",
+              "parentUUID": "ec8004f5-a309-4dc0-96d5-098d3add9bc2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "33cd99cd-40b9-4097-99bf-d72d6968f48b",
+            "290a8de4-ceba-406f-ac49-9e06aafcef23",
+            "358972fa-be66-4823-877d-bea364c5d1ff",
+            "4c5f920f-1e25-47a4-981e-7bcab23ea41e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2286,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 25000
+        },
+        {
+          "uuid": "59c175e6-d31d-4aee-a525-717ee46c345e",
+          "title": "Fraud Service",
+          "fullFile": "/Users/vishal.agarwalnationwide.co.uk/workspace/api-testing/test/fraud_test.js",
+          "file": "/test/fraud_test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return a 200 response, valid reason and comments",
+              "fullTitle": "Fraud Service should return a 200 response, valid reason and comments",
+              "timedOut": false,
+              "duration": 291,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_FRAUD\",\n        \"payload\": {\n            \"isAlreadyReferred\": false,\n            \"reason\": \"userReferral\",\n            \"comments\": \"Some referral comments\"\n        },\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        console.log(\"Error\", err);\n        console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        \n        expect(res.body.payload).to.have.property(\"comments\");\n        expect(res.body.payload.comments).to.not.equal(null);\n        expect(res.body.payload.comments).to.equal(\"Some referral comments\");\n        expect(res.body.payload).to.have.property(\"reason\");\n        expect(res.body.payload.reason).to.not.equal(null);\n        expect(res.body.payload.reason).to.equal(\"userReferral\");\n        done();\n    });",
+              "err": {},
+              "uuid": "da76498b-4c4f-493d-ba6e-7021fd843ee8",
+              "parentUUID": "59c175e6-d31d-4aee-a525-717ee46c345e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return a 200 response, for a case marked fraud (manual)",
+              "fullTitle": "Fraud Service should return a 200 response, for a case marked fraud (manual)",
+              "timedOut": false,
+              "duration": 363,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "api.post(\"/sendevent\")\n    .set(\"Accept\", 'application/json')\n    .send({\n        \"type\": \"@NBS/HOME_FTB_CASE_GET_FRAUD\",\n        \"payload\": {},\n        \"meta\": {\n            \"applicationId\": `${applicationId}`\n        }\n    })\n    .expect('Content-Type', /json/)\n    .expect(200)\n    .end(function(err, res){\n        console.log(\"Error\", err);\n        console.log(\"Error reponse\", res.body);\n        expect(res.body).to.have.property(\"payload\");\n        expect(res.body.payload).to.not.equal(null);\n        expect(res.body).to.have.property(\"type\");\n        expect(res.body.payload).to.not.equal(\"@NBS/HOME_FTB_CASE_GET_FRAUD_RESULT\");\n        \n        expect(res.body.payload).to.have.property(\"comments\");\n        expect(res.body.payload.comments).to.not.equal(null);\n        expect(res.body.payload.comments).to.equal(\"Some referral comments\");\n        expect(res.body.payload).to.have.property(\"reason\");\n        expect(res.body.payload.reason).to.not.equal(null);\n        expect(res.body.payload.reason).to.equal(\"userReferral\");\n        expect(res.body.payload).to.have.property(\"requestedBy\");\n        expect(res.body.payload.requestedBy).to.not.equal(null);\n        expect(res.body.payload.requestedBy).to.equal(\"QA\"); // TODO: check that\n        expect(res.body.payload).to.have.property(\"requesterRole\");\n        expect(res.body.payload.requesterRole).to.not.equal(null);\n        expect(res.body.payload.requesterRole).to.equal(\"MC\");  // TODO: check that\n        expect(res.body.payload).to.have.property(\"requestedDate\");\n        expect(res.body.payload.requestedDate).to.not.equal(null);\n        done();\n    });",
+              "err": {},
+              "uuid": "ba3c27ed-6429-4acd-b0bc-a133abb89c39",
+              "parentUUID": "59c175e6-d31d-4aee-a525-717ee46c345e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "da76498b-4c4f-493d-ba6e-7021fd843ee8",
+            "ba3c27ed-6429-4acd-b0bc-a133abb89c39"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 654,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 25000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 25000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "6.2.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": null,
+      "version": "4.0.1"
+    }
+  }
+}

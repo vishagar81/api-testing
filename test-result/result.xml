@@ -1,0 +1,56 @@
+<testsuites name="Mocha Tests">
+  <testsuite name="Direct Debit Details Service" tests="4" errors="0" failures="0" skipped="0" timestamp="2019-12-09T11:36:42" time="2.048">
+    <testcase classname="Direct Debit Details Service" name="should return a 200 response, valid sortcode and account number" time="0.592">
+      <system-out><![CDATA[Error null
+Error reponse { type: '@NBS/HOME_FTB_CASE_DDDETAILS_RESULT',
+  payload:
+   { validateDirectDebitDetailsResult:
+      { sortCodeAndAccountNumberCheckDecision: 'PASS',
+        sortCodeAndAccountNumberCheckDecisionMessage: 'You have setup your Direct Debit.' } },
+  meta: null,
+  error: null }
+]]></system-out>
+    </testcase>
+    <testcase classname="Direct Debit Details Service" name="should return a 200 response, invalid sortcode and account number" time="0.453">
+    </testcase>
+    <testcase classname="Direct Debit Details Service" name="should return a 200 response, valid sortcode and invalid account number" time="0.499">
+    </testcase>
+    <testcase classname="Direct Debit Details Service" name="should return a 200 response, invalid sortcode and invalid account number" time="0.499">
+    </testcase>
+  </testsuite>
+  <testsuite name="Fraud Service" tests="2" errors="0" failures="0" skipped="0" timestamp="2019-12-09T11:36:44" time="0.762">
+    <testcase classname="Fraud Service" name="should return a 200 response, valid reason and comments" time="0.377">
+      <system-out><![CDATA[Error null
+Error reponse { type: '@NBS/HOME_FTB_CASE_FRAUD_RESULT',
+  payload:
+   { reason: 'userReferral',
+     comments: 'Some referral comments',
+     requestedBy: null,
+     decision: null,
+     respondedBy: null,
+     responderRole: null,
+     respondedDate: null },
+  meta: null,
+  error: null }
+]]></system-out>
+    </testcase>
+    <testcase classname="Fraud Service" name="should return a 200 response, for a case marked fraud (manual)" time="0.383">
+      <system-out><![CDATA[Error null
+Error reponse { type: '@NBS/HOME_FTB_CASE_GET_FRAUD_RESULT',
+  payload:
+   { reason: 'userReferral',
+     comments: 'Some referral comments',
+     isFraud: true,
+     requestedBy: 'QA',
+     requesterRole: 'MC',
+     requestedDate: '2019-12-09T11:36:44.835Z',
+     respondedDate: null,
+     respondedBy: null,
+     responderRole: null,
+     decision: null },
+  meta: null,
+  error: null }
+]]></system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
